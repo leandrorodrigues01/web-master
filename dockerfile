@@ -16,6 +16,8 @@ WORKDIR /app
 # Copia o arquivo index.php para o diretório /app no contêiner
 COPY backend/index.php /app/index.php
  
+# Instale as dependências usando o Composer
+RUN composer install --no-interaction --optimize-autoloader
 
 
 # Instale as dependências usando o Composer
