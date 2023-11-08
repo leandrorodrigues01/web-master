@@ -19,7 +19,12 @@ COPY backend/index.php /app/index.php
 # Instale as dependências usando o Composer
 COPY composer.json  /app/
 COPY composer.lock  /app/
- 
+
+
+# Copia o diretório vendor para o diretório /app no contêiner
+COPY vendor /app/vendor
+
+
 # Exponha a porta 80 para que você possa acessar o servidor PHP
 EXPOSE 80
 
