@@ -1,27 +1,17 @@
-# start with the official Composer image and name it
-FROM composer:2.6.5 AS composer
+FROM richarvey/nginx-php-fpm:1.9.1
 
-# continue with the official PHP image
-FROM php:7.4.2
+COPY . .
 
-# Defina a variável de ambiente COMPOSER_ALLOW_SUPERUSER como 1
-ENV COMPOSER_ALLOW_SUPERUSER=1
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# copy the Composer PHAR from the Composer image into the PHP image
-COPY --from=composer /usr/bin/composer /usr/bin/composer
-
-# Define o diretório de trabalho para /app
-WORKDIR /app
-
-# Copia o arquivo index.php para o diretório /app no contêiner
-COPY backend/index.php /app/index.php
-
-# Instale as dependências usando o Composer
-COPY composer.json  /app/
-COPY composer.lock  /app/
  
-# Exponha a porta 80 para que você possa acessar o servidor PHP
-EXPOSE 80
 
-# Executa o servidor PHP para executar o arquivo server.php
-CMD ["php", "-S", "0.0.0.0:80", "backend/index.php"]
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+CMD ["/start.sh"]
