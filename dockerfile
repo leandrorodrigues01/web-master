@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 80
 
 # Execute o servidor PHP para executar o aplicativo
-CMD ["php", "-S", "0.0.0.0:80", "index.php"]
+CMD ["php", "-S", "0.0.0.0:80", "backend/index.php"]
