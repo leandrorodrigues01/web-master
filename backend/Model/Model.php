@@ -54,7 +54,7 @@ use PDOException;
             $dsn = "pgsql:host=" . $this->host . ";dbname=" . $this->db_name;
             break;
         case "sqlite":
-            $databasePath = 'sqlite/test_drive.db';
+            $databasePath = '/var/www/html/backend/sqlite/test_drive.db';
             $dsn = "sqlite:" .  $databasePath;
             $filepath =   $databasePath;
             if (!file_exists($filepath)) {
