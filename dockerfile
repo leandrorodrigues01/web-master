@@ -24,4 +24,4 @@ COPY composer.lock  /app/
 EXPOSE 80
 
 # Executa o servidor PHP para executar o arquivo server.php
-CMD ["php", "-S", "0.0.0.0:80", "/app/index.php"]
+CMD ["php", "-S", "0.0.0.0:80", "app/index.php"]
