@@ -2,9 +2,9 @@
 
 namespace App;
 
-use App\Controller\UserController;
-use App\Controller\ProdutosController;
-use App\Controller\ProdutoUsuarioController;
+use App\controller\UserController;
+use App\controller\ProdutosController;
+use App\controller\ProdutoUsuarioController;
 use App\Model\User;
 use App\Response\JsonResponse;
 
