@@ -1,39 +1,23 @@
-# start with the official Composer image and name it
-FROM composer:2.6.5 AS composer
-
-# continue with the official PHP image
+# Use a imagem oficial PHP como base
 FROM php:7.4.2
 
 # Defina a variável de ambiente COMPOSER_ALLOW_SUPERUSER como 1
-ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-# copy the Composer PHAR from the Composer image into the PHP image
-COPY --from=composer /usr/bin/composer /usr/bin/composer
+# Instale as dependências do sistema necessárias
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip
 
-# Define o diretório de trabalho para /app
-WORKDIR /app
+# Crie um diretório de trabalho para o aplicativo
+WORKDIR /var/www/html
 
-# Copia o arquivo index.php para o diretório /app no contêiner
-COPY backend/index.php /app/index.php
- 
-# Instale as dependências usando o Composer
-RUN composer install --no-interaction --optimize-autoloader
-
-
-# Instale as dependências usando o Composer
-COPY composer.json  /app/
-COPY composer.lock  /app/
- 
-
-# Image config
-ENV SKIP_COMPOSER 1
-ENV WEBROOT /var/www/html/public
-ENV PHP_ERRORS_STDERR 1
-ENV RUN_SCRIPTS 1
-ENV REAL_IP_HEADER 1
+# Copie o código do aplicativo para o contêiner
+COPY . .
 
 # Exponha a porta 80 para que você possa acessar o servidor PHP
 EXPOSE 80
 
-# Executa o servidor PHP para executar o arquivo server.php
-CMD ["php", "-S", "0.0.0.0:80", "/app/index.php"]
+# Execute o servidor PHP para executar o aplicativo
+CMD ["php", "-S", "0.0.0.0:80", "index.php"]
