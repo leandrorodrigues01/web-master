@@ -22,8 +22,13 @@ COPY backend/index.php /app/index.php
 COPY composer.json  /app/
 COPY composer.lock  /app/
  
-# Copia o diretório vendor para o diretório /app no contêiner
-COPY vendor /app/vendor
+
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
 # Exponha a porta 80 para que você possa acessar o servidor PHP
 EXPOSE 80
