@@ -11,18 +11,10 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 # Define o diretório de trabalho para /app
-WORKDIR /app
-
-# Copia o arquivo index.php para o diretório /app no contêiner
-COPY backend/index.php /app/index.php
-
-# Instale as dependências usando o Composer
-COPY composer.json  /app/
-COPY composer.lock  /app/
+WORKDIR /backend
  
 # Exponha a porta 80 para que você possa acessar o servidor PHP
 EXPOSE 80
 
 # Executa o servidor PHP para executar o arquivo server.php
-CMD ["php", "-S", "0.0.0.0:80", "/backend/index.php"]
-
+CMD ["php", "-S", "0.0.0.0:80", "backend/index.php"]
