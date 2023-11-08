@@ -3,7 +3,7 @@
 namespace App;
 require __DIR__ . '/../vendor/autoload.php';
  
-use App\Router;
+use App\router;
 
 
 $requestMethod = $_SERVER["REQUEST_METHOD"];
