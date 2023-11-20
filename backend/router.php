@@ -49,8 +49,8 @@ class Router
          header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
          header("Access-Control-Allow-Headers: Authorization, Content-Type");
          header("Cache-Control: no-cache, no-store, must-revalidate");
-         error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
-         ini_set("display_errors", 0);
+         // error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+         // ini_set("display_errors", 0);
          if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
              header("Access-Control-Allow-Origin: *");
              header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
