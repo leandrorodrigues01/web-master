@@ -274,6 +274,9 @@ class Router
                      );
                      $headers = getallheaders();
                      $token = $headers["authorization"] ?? null;
+
+                  var_dump($headers);
+                       var_dump($token);
                      if ($token === null) {
                          $data = [
                              "status" => false,
