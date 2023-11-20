@@ -2,11 +2,12 @@
 
 namespace App;
 
-use App\controller\UserController;
-use App\controller\ProdutosController;
-use App\controller\ProdutoUsuarioController;
-use App\Model\User;
-use App\Response\JsonResponse;
+ use App\Controller\UserController;
+ use App\Controller\ProdutosController;
+ use App\Controller\ProdutoUsuarioController;
+ use App\Controller\PerfilPermissaoController;
+ use App\Model\User;
+ use App\Response\JsonResponse;
 
 class Router
 {
